@@ -31,7 +31,7 @@ const App = () => {
         <br />
 
         <Typography variant="h4" component="h3" color={"#335c6e"}>
-         Students Books Assignment
+          Students Books Assignment
         </Typography>
 
         <br />
@@ -48,7 +48,7 @@ const App = () => {
               justifyContent="center"
 
             >
-              <Grid item xs={4}>
+              <Grid item xs={5}>
 
                 <Autocomplete
                   freeSolo

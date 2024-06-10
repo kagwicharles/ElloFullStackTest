@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CardContent, Card, CardMedia, Typography, Button, CardActions } from '@mui/material';
+import { CardContent, Card, CardMedia, Typography, Button, CardActions, Grid } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 export default function BookItem({ coverPhotoURL, title }) {
@@ -16,10 +16,17 @@ export default function BookItem({ coverPhotoURL, title }) {
                     {title}
                 </Typography>
             </CardContent>
-            <CardActions sx={{ alignItems: 'flex-end' }}>
-                <Button variant="contained" startIcon={<AddIcon />} disableElevation={true} sx={{ backgroundColor: '#5ACCCC' }} >
-                    Add Book
-                </Button>
+            <CardActions >
+                <Grid container spacing={0} >
+                    <Grid container direction="row"
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        <Button variant="contained" startIcon={<AddIcon />} disableElevation={true} sx={{ backgroundColor: '#5ACCCC' }} >
+                            Add Book
+                        </Button>
+                    </Grid>
+                </Grid>
             </CardActions>
         </Card>
     );

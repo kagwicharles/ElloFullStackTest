@@ -45,7 +45,7 @@ export default function DisplayTab({ books }) {
                             </div>
                         )
                     }</TabPanel>
-                <TabPanel value="3">Item Three</TabPanel>
+                <TabPanel value="2">No reading list yet!</TabPanel>
             </TabContext>
         </Box>
     );
