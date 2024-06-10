@@ -8,13 +8,10 @@ import { fetchBooks } from './api/apiservice.js';
 import DisplayTab from './components/DisplayTab.js';
 
 const App = () => {
-  const [readingList, setReadingList] = useState();
   const [books, setBooks] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
 
 
   useEffect(() => {
-
     fetchBooks()
       .then(result => {
         setBooks(result.data.books);
@@ -23,7 +20,6 @@ const App = () => {
       .catch(error => {
         console.log(error);
       });
-
   }, []);
 
   return (
@@ -34,13 +30,12 @@ const App = () => {
         <br />
         <br />
 
-        <Typography variant="h3" component="h3" color={"#335c6e"}>
-          Books Assignment
+        <Typography variant="h4" component="h3" color={"#335c6e"}>
+         Students Books Assignment
         </Typography>
 
         <br />
         <br />
-
 
         {books === null || books === undefined || books.length === 0 ?
           (<div></div>) : (
@@ -74,7 +69,6 @@ const App = () => {
             </Grid>
 
           )}
-
         <br />
         <br />
         <DisplayTab books={books} />

@@ -25,24 +25,26 @@ export default function DisplayTab({ books }) {
                         <Tab label="Reading List" value="2" />
                     </TabList>
                 </Box>
-                <TabPanel value="1">    {books === null || books === undefined || books.length === 0 ?
-                    (<div>No reading list yet!</div>) : (
-                        <div>
-                            <br />
-                            <br />
+                <TabPanel value="1">
+                    {books === null || books === undefined || books.length === 0 ?
+                        (<div>No Books Found!</div>) : (
+                            <div>
+                                <br />
+                                <br />
 
-                            <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 2, sm: 12, md: 12 }}>
-                                {
-                                    books.map((item, index) => (
-                                        <Grid xs={8} sm={6} md={4} lg={3} index={index}>
-                                            <BookItem title={item.title} coverPhotoURL={item.coverPhotoURL} />
+                                <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 2, sm: 12, md: 12 }}>
+                                    {
+                                        books.map((item, index) => (
+                                            <Grid xs={8} sm={6} md={4} lg={3} index={index}>
+                                                <BookItem title={item.title} coverPhotoURL={item.coverPhotoURL} />
 
-                                        </Grid>
-                                    ))
-                                }
-                            </Grid>
-                        </div>
-                    )}</TabPanel>
+                                            </Grid>
+                                        ))
+                                    }
+                                </Grid>
+                            </div>
+                        )
+                    }</TabPanel>
                 <TabPanel value="3">Item Three</TabPanel>
             </TabContext>
         </Box>
