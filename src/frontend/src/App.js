@@ -1,82 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
-import { Container, Typography, TextField, Autocomplete } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Container, Typography, } from '@mui/material';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import { createTheme, ThemeProvider }
+  from '@mui/material/styles';
+import { observer, inject } from 'mobx-react';
 
 import './App.css';
-import { fetchBooks } from './api/apiservice.js';
 import DisplayTab from './components/DisplayTab.js';
 
-const App = () => {
-  const [books, setBooks] = useState([]);
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#54CCCC',
+    },
+    secondary: {
+      main: '#FAAD00',
+    },
+  },
+  typography: {
+    fontFamily: 'Mulish'
+  },
+});
 
-
+const App = ({ bookslist }) => {
   useEffect(() => {
-    fetchBooks()
-      .then(result => {
-        setBooks(result.data.books);
-        console.log(books);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+    bookslist.fetchBooks(); // Fetch books when component mounts
+  }, [bookslist]);
 
   return (
-    <Container >
-      <div className="App">
-        <br sx={{ height: 50 }} />
-        <AutoStoriesIcon sx={{ fontSize: 150, color: "#5ACCCC" }} />
-        <br />
-        <br />
-
-        <Typography variant="h4" component="h3" color={"#335c6e"}>
-          Students Books Assignment
-        </Typography>
-
-        <br />
-        <br />
-
-        {books === null || books === undefined || books.length === 0 ?
-          (<div></div>) : (
-
-            <Grid
-              container
-              spacing={0}
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-
-            >
-              <Grid item xs={5}>
-
-                <Autocomplete
-                  freeSolo
-                  id="free-solo-2-demo"
-                  disableClearable
-                  options={books.map((option) => option.title)}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Search book title"
-                      InputProps={{
-                        ...params.InputProps,
-                        type: 'search',
-                      }}
-                    />)}
-                />
-              </Grid>
-            </Grid>
-
-          )}
-        <br />
-        <br />
-        <DisplayTab books={books} />
-        <br />
-        <br />
-      </div>
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container >
+        <div className="App">
+          <br sx={{ height: 50 }} />
+          <AutoStoriesIcon sx={{ fontSize: 150, color: "#5ACCCC" }} />
+          <br />
+          <br />
+          <Typography variant="h4" component="h3" color={"#335c6e"}>
+            Students Books Assignment
+          </Typography>
+          <br />
+          <br />
+          <DisplayTab />
+          <br />
+          <br />
+        </div>
+      </Container>
+    </ThemeProvider>
   );
 }
 
-export default App;
+export default inject('bookslist')(observer(App));

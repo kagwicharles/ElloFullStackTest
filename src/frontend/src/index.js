@@ -3,16 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from "mobx-react";
 
 import '@fontsource/mulish/300.css';
 import '@fontsource/mulish/400.css';
 import '@fontsource/mulish/500.css';
 import '@fontsource/mulish/700.css';
+import bookslist from './appstate/BoooksList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider bookslist={bookslist}>
+      <App />
+    </Provider>,
   </React.StrictMode>
 );
 
